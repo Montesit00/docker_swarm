@@ -28,3 +28,5 @@ El resto de los pasos esta en el archivo pasos.txt. Esos son los pasos que hice 
 
 	1)- docker swarm init
 	2)- docker stack deploy -c docker-compose.yml parcial_swarm
+
+Al agregar un el nombre/apellido y dni en el sitio web, hacer f5 para recargar la información
