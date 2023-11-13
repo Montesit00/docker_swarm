@@ -18,7 +18,6 @@ El resto de los pasos esta en el archivo pasos.txt. Esos son los pasos que hice 
 * Front - imagen: parcial_swarm_front_service
 
 ### Hacer Docker Build
-Para hacer esto debe ingresar a las carpetas respectivas para hacer el build
 
 	1)- docker build -t parcial_swarm_basededatos ./bd
  	2)- docker build -t parcial_swarm_rest_service ./rest_service
