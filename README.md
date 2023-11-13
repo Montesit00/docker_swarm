@@ -17,7 +17,15 @@ El resto de los pasos esta en el archivo pasos.txt. Esos son los pasos que hice 
 * Servicio Soap - imagen: parcial_swarm_soap_service 
 * Front - imagen: parcial_swarm_front_service
 
-### Inicializar Docker Swarm
+### Hacer Docker Build
+Para hacer esto debe ingresar a las carpetas respectivas para hacer el build
+
+	1)- docker build -t parcial_swarm_basededatos ./bd
+ 	2)- docker build -t parcial_swarm_rest_service ./rest_service
+  	39- docker build -t parcial_swarm_soap_service ./soap_service
+   	4)- docker build -t parcial_swarm_front_service ./front
+
+### Luego inicializar Docker Swarm
 
 	1)- docker swarm init
 	2)- docker stack deploy -c docker-compose.yml parcial_swarm
