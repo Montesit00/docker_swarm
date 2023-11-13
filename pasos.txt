@@ -29,7 +29,5 @@ Primero paso cree una carpeta que engloba toda la aplicación
 
 primero hago
 	docker swarm init
-despues para crear la red
-	docker network create --driver=overlay red_parcial_swarm
 despues inicializo el swarm
 	docker stack deploy -c docker-compose.yml parcial_swarm
