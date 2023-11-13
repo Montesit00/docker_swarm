@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  basededatos_service:
+    image: parcial_swarm_basededatos
+    environment:
+      MYSQL_ROOT_PASSWORD: root1
+    deploy:
+      replicas: 1
+    ports:
+      - "3306:3306"
+    networks:
+      - red_parcial_swarm
+
+  rest_service:
+    image: parcial_swarm_rest_service
+    deploy:
+      replicas: 1
+    command: >
+      sh -c "while ! nc -z basededatos_service 3306; do sleep 1; done; npm start"
+    ports:
+      - "8080:8080"
+    networks:
+      - red_parcial_swarm
+
+  soap_service:
+    image: parcial_swarm_soap_service
+    deploy:
+      replicas: 1
+    command: >
+      sh -c "while ! nc -z basededatos_service 3306; do sleep 1; done; npm start"
+    ports:
+      - "8888:8888"
+    networks:
+      - red_parcial_swarm
+
+  front_service:
+    image: parcial_swarm_front_service
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 4
+    networks:
+      - red_parcial_swarm
+
+networks:
+  red_parcial_swarm:

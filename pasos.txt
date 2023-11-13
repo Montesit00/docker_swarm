@@ -1,0 +1,35 @@
+Primero paso cree una carpeta que engloba toda la aplicación
+
+2)- La carpeta db contiene el archivo datos.sql que esta contiene mi tabla personas y tambien lleva su propio dockerfile
+   En esta carpeta utilize estos comandos
+
+	docker build -t parcial_swarm_basededatos . --> me para en la carpeta de la bd
+	docker run -p 3306:3306 --name basededatos_container -e MYSQL_ROOT_PASSWORD=root1 -d parcial_swarm_basededatos --> hago esto para probar si funciona todo
+
+(hice estos comandos para probar si me funcionaba todo, no hace falta hacerlo si se utiliza un docker_compose.yml)
+
+3)- Ahora creo la carpeta con mi servicio rest esta se le di el nombre de rest_servicio, aqui estara un servidor con node/express que hace un post a mi backend.
+
+	docker build -t parcial_swarm_rest_service . ---> creo la imagen de mi rest_service
+	docker run -p 8080:8080 --name rest_service_container -d parcial_swarm_rest_service  --> hago esto para probar si funciona todo
+
+(hice estos comandos para probar si me funcionaba todo, no hace falta hacerlo si se utiliza un docker_compose.yml)
+
+4)- Ahora creo una carpeta para mi servicio soap aqui hago un servidor basico con node/express luego agrego soap y mysql hago la logica necesaria para el punto
+
+	docker build -t parcial_swarm_soap_service .  ---> me pocisiono en la carpeta soap_service
+	docker run -p 8888:8888 --name soap_service_container -d parcial_swarm_soap_service  --> hago esto para probar si funciona todo
+
+5)- Creo una carpeta front que contrenda un index.html que es donde se mostrar todo y se hara las peticiones a estos servicio y su respectivo dockerfile
+
+	docker build -t parcial_swarm_front_service . ---> me posiciono en la carpeta front 
+	docker run -p 80:80 --name front_service_container -d parcial_swarm_front_service  --> hago esto para probrar ya el servicio completo corriendo los 4 contenedores
+
+6)- ahora lo que hago es crear el docker swarm 
+
+primero hago
+	docker swarm init
+despues para crear la red
+	docker network create --driver=overlay red_parcial_swarm
+despues inicializo el swarm
+	docker stack deploy -c docker-compose.yml parcial_swarm
