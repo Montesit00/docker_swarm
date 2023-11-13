@@ -21,7 +21,7 @@ El resto de los pasos esta en el archivo pasos.txt. Esos son los pasos que hice 
 
 	1)- docker build -t parcial_swarm_basededatos ./bd
  	2)- docker build -t parcial_swarm_rest_service ./rest_service
-  	39- docker build -t parcial_swarm_soap_service ./soap_service
+  	3)- docker build -t parcial_swarm_soap_service ./soap_service
    	4)- docker build -t parcial_swarm_front_service ./front
 
 ### Luego inicializar Docker Swarm
